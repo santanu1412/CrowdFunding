@@ -16,5 +16,7 @@ createRoot(document.getElementById('root')).render(
     <CreateCampaign />
     <CampaignCard />
     <CampaignPage />
+    <footer/>
+    <button/>
   </StrictMode>,
 )
