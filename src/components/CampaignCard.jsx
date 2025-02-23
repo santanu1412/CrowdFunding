@@ -1,27 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 const CampaignCard = ({ campaign }) => {
-  const daysLeft = dayjs(campaign.deadline).diff(dayjs(), 'day');
+  const navigate = useNavigate();
+  const progress = (campaign.currentAmount / campaign.goal) * 100;
 
   return (
-    <div className="campaign-card">
-      <h3>{campaign.title}</h3>
-      <p>{campaign.description.substring(0, 100)}...</p>
-      <div className="progress-bar">
-        <div 
-          className="progress" 
-          style={{ width: `${(campaign.raisedAmount / campaign.target) * 100}%` }}
-        ></div>
-      </div>
-      <div className="campaign-stats">
-        <span>${campaign.raisedAmount.toLocaleString()} raised</span>
-        <span>${campaign.target.toLocaleString()} goal</span>
-      </div>
-      <div className="campaign-footer">
-        <span>{daysLeft} days left</span>
-        <Link to={`/campaign/${campaign.id}`} className="view-btn">View Campaign</Link>
+    <div 
+      className="campaign-card"
+      onClick={() => navigate(`/campaign/${campaign.id}`)}
+    >
+      <img 
+        src={campaign.image} 
+        alt={campaign.title}
+        loading="lazy"
+        className="campaign-image"
+      />
+      <div className="campaign-content">
+        <div className="campaign-header">
+          <h3>{campaign.title}</h3>
+          {campaign.verified && <span className="verified-badge">✓ Verified</span>}
+        </div>
+        <p className="campaign-creator">By {campaign.creator}</p>
+        <div className="progress-bar">
+          <div 
+            className="progress-fill" 
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        <div className="campaign-stats">
+          <div>
+            <strong>${campaign.currentAmount.toLocaleString()}</strong>
+            <span>pledged of ${campaign.goal.toLocaleString()}</span>
+          </div>
+          <div>
+            <strong>{campaign.backers}</strong>
+            <span>backers</span>
+          </div>
+        </div>
       </div>
     </div>
   );

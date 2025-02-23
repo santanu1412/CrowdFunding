@@ -1,63 +1,68 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { createCampaign } from '../services/api';
+import RichTextEditor from './RichTextEditor';
 
 const CreateCampaign = () => {
   const [formData, setFormData] = useState({
     title: '',
-    description: '',
-    target: '',
-    deadline: ''
+    category: 'technology',
+    goal: '',
+    endDate: '',
+    story: '',
+    rewards: []
   });
-  const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await createCampaign(formData);
-      history.push('/');
-    } catch (error) {
-      console.error('Error creating campaign:', error);
-    }
+    // Add submission logic
   };
 
   return (
-    <div className="create-form">
-      <h2>Create New Campaign</h2>
+    <div className="create-campaign-form">
+      <h2>Start Your Campaign</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input
-          type="text"
-          required
-          value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-        />
+        <div className="form-group">
+          <label>Campaign Title</label>
+          <input
+            type="text"
+            value={formData.title}
+            onChange={(e) => setFormData({...formData, title: e.target.value})}
+            required
+          />
+        </div>
 
-        <label>Description</label>
-        <textarea
-          required
-          value={formData.description}
-          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-        />
+        <div className="form-row">
+          <div className="form-group">
+            <label>Funding Goal ($)</label>
+            <input
+              type="number"
+              value={formData.goal}
+              onChange={(e) => setFormData({...formData, goal: e.target.value})}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>End Date</label>
+            <input
+              type="date"
+              value={formData.endDate}
+              onChange={(e) => setFormData({...formData, endDate: e.target.value})}
+              required
+            />
+          </div>
+        </div>
 
-        <label>Target Amount ($)</label>
-        <input
-          type="number"
-          required
-          min="1"
-          value={formData.target}
-          onChange={(e) => setFormData({ ...formData, target: e.target.value })}
-        />
+        <div className="form-group">
+          <label>Campaign Story</label>
+          <RichTextEditor
+            content={formData.story}
+            onChange={(content) => setFormData({...formData, story: content})}
+          />
+        </div>
 
-        <label>Deadline</label>
-        <input
-          type="date"
-          required
-          value={formData.deadline}
-          onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
-        />
-
-        <button type="submit">Launch Campaign</button>
+        <button type="submit" className="submit-button">
+          Launch Campaign
+        </button>
       </form>
     </div>
   );
