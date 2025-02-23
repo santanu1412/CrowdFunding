@@ -6,6 +6,8 @@ import HowItWorks from './components/HowItWorks';
 import Blog from './components/Blog';
 import ContactUs from './components/ContactUs';
 import NotFoundPage from './components/NotFoundPage';
+import Navbar from './components/Navbar';    // Added missing import
+import Footer from './components/Footer';    // Added missing import
 
 function App() {
   return (
@@ -13,7 +15,8 @@ function App() {
       <Navbar />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />           {/* Added root path */}
+          <Route path="/home/:id" element={<HomePage />} />
           <Route path="/campaign/:id" element={<CampaignPage />} />
           <Route path="/create" element={<CreateCampaign />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
