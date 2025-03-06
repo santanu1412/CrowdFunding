@@ -1,9 +1,3 @@
-import React from 'react'
-
-function Button() {
-  return (
-    <div>Button</div>
-  )
-}
-
-export default Button
+<button className="back-to-top" onClick={() => scrollToSection(homeRef)}>
+  ↑
+</button>
