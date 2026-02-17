@@ -1,0 +1,152 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: #fff;
+  background-color: #1a1a1a;
+  --primary: #4f46e5;
+  --secondary: #10b981;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(26, 26, 26, 0.9);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  z-index: 1000;
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  color: var(--primary);
+}
+
+.section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("ADD_YOUR_IMAGE_URL_HERE_HOME_BG") center/cover;
+  text-align: center;
+}
+
+.home-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.campaigns-section {
+  background: #2a2a2a;
+}
+
+.campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+}
+
+.campaign-card {
+  background: #3a3a3a;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
+}
+
+.campaign-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #555;
+  border-radius: 4px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--secondary);
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.campaign-page {
+  background: #fff;
+  color: #000;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+.campaign-image-large {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.create-section, .about-section, .blog-section {
+  background: #2a2a2a;
+}
+
+.contact-section {
+  background: var(--primary);
+}
+
+.footer {
+  padding: 1rem;
+  text-align: center;
+  background: #111;
+}
+
+button {
+  background: var(--primary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3b82f6;
+}
