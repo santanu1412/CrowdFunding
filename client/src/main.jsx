@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 
-// Import Global Styles and Animations
+// THESE TWO LINES ARE CRITICAL
 import './styles/globals.css';
 import './styles/animations.css';
 

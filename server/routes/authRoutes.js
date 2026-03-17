@@ -4,16 +4,22 @@ const {
   register, 
   login, 
   logout, 
-  getMe 
+  getMe, 
+  verifyEmail, 
+  forgotPassword, 
+  resetPassword 
 } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
-// Public routes
+// Standard Auth
 router.post('/register', register);
 router.post('/login', login);
 router.post('/logout', logout);
-
-// Protected routes (requires valid JWT token in cookies)
 router.get('/me', protect, getMe);
+
+// Identity Verification & Recovery
+router.get('/verify-email/:token', verifyEmail);
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password/:token', resetPassword);
 
 module.exports = router;

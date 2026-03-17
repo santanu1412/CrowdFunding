@@ -1,22 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const { 
-  getCampaigns, 
-  getCampaign, 
   createCampaign, 
-  updateCampaign, 
-  deleteCampaign 
+  getCampaigns, 
+  getCampaign,
+  updateCampaign,
+  deleteCampaign,
+  getMyCampaigns,
+  getFeaturedCampaigns
 } = require('../controllers/campaignController');
 const { protect } = require('../middleware/authMiddleware');
 
-// Public routes: Anyone can view campaigns
+// Specific routes must go BEFORE parameterized routes (/:id) to prevent matching errors
+router.get('/featured', getFeaturedCampaigns);
+router.get('/user/mine', protect, getMyCampaigns);
+
+// Base routes
 router.route('/')
   .get(getCampaigns)
-  .post(protect, createCampaign); // Only authenticated users can create
+  .post(protect, createCampaign);
 
+// Parameterized routes
 router.route('/:id')
   .get(getCampaign)
-  .put(protect, updateCampaign)     // Only the creator can update
-  .delete(protect, deleteCampaign); // Only the creator or admin can delete
+  .put(protect, updateCampaign)
+  .delete(protect, deleteCampaign);
 
 module.exports = router;
