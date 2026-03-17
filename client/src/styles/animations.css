@@ -1,0 +1,44 @@
+/* Custom raw CSS animations to supplement Framer Motion.
+  Imported into main.jsx to be available globally.
+*/
+
+/* Subtle floating effect for cards or hero images */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Neon flicker effect for text or borders */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #00f5ff,
+      0 0 40px #00f5ff,
+      0 0 80px #00f5ff;
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.5;
+  }
+}
+
+.text-flicker {
+  animation: neon-flicker 3s infinite alternate;
+}
+
+/* Background mesh pulse delay utility */
+.delay-2000 {
+  animation-delay: 2s;
+}
+
+.delay-4000 {
+  animation-delay: 4s;
+}
